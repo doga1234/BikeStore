@@ -1,0 +1,7 @@
+4 November 2023
+	Github organization and repository for homework of database systems course were created.
+	to see progress easier week by week we have created progress folder and .txt files individually.
+	Products.csv file edited according to project requirements. product_age and warranty columns and rows added.
+	Flask Application initialized.
+        Index.html and layout.html files implemented.
+        products and categories entitity classes created.
