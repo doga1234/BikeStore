@@ -1,0 +1,4 @@
+November 5th 2023
+    - Implemented Customer model that represents the customer profiles within the system. 
+    - Implemented Staff model that represents the staff members within the system. 
+    - Added "static" folder for storing static assets.  
