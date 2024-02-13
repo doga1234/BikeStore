@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}Sign In{% endblock %}
+{% block body %}
+    <h1>Sign In</h1>
+    <hr>
+    <div>
+    <form method="post" action="" name="login">
+        {{ form.csrf_token }}
+      <div class="form-group">
+          {{ form.email.label }}
+        {{ form.email(required=True, autofocus=True, class='form-control', placeholder='Your email') }}
+      </div>
+        {% for error in form.email.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+      <div class="form-group">
+          {{ form.password.label }}
+        {{ form.password(required=True, class='form-control', placeholder='Your password') }}
+      </div>
+        {% for error in form.password.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+        <br>
+      <button class="btn btn-info btn-block mb-4">Sign in</button>
+    </form>
+    <a href="{{ url_for('sign_in_customer') }}"><button class="btn btn-link">Are You Customer? Sign In</button></a>
+    </div>
+{% endblock %}

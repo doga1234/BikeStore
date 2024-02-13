@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}My Cart{% endblock %}
+
+{% block body %}
+    <h1>My Cart</h1>
+    <hr>
+    {% if session['cart']|length != 0 %}
+        <form action="" method="post">
+            <table class="table is-fullwidth table-hover">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Brand Id</th>
+                    <th>Category Id</th>
+                    <th>Model Year</th>
+                    <th>List Price</th>
+                </tr>
+                {% for product in session['cart'] %}
+                    <tr>
+                        <td>
+                            <label class="checbox">
+                                <input type="checkbox" name="cart_keys" value="{{ product.product_id }}">
+                            </label>
+                            {{ product.product_name }}
+                        </td>
+                        <td>{{ product.brand_id }}</td>
+                        <td>{{ product.category_id }}</td>
+                        <td>{{ product.model_year }}</td>
+                        <td>{{ product.list_price }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="form-group">
+                <button class="btn btn-danger float-left">Remove</button>
+                <a href="{{ url_for('makeorder') }}" class="btn btn-primary float-right">Order</a>
+            </div>
+        </form>
+    {% else %}
+        <div class="jumbotron">Your cart is empty!</div>
+    {% endif %}
+{% endblock %}

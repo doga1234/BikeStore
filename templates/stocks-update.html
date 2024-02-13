@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Stock Record Form</h1>
+    <hr>
+    <div>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <!-- Store ID -->
+            <div class="form-group">
+                <label for="store_id" class="col-form-label">Store ID:</label>
+                {{ form.store_id(required=False, autofocus=True, class='form-control', placeholder='Store ID') }}
+            </div>
+            {% for error in form.store_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Product ID -->
+            <div class="form-group">
+                <label for="product_id" class="col-form-label">Product ID:</label>
+                {{ form.product_id(required=False, autofocus=True, class='form-control', placeholder='Product ID') }}
+            </div>
+            {% for error in form.product_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Qauntity -->
+            <div class="form-group">
+                <label for="quantity" class="col-form-label">Quantity:</label>
+                {{ form.quantity(required=True, autofocus=True, class='form-control', placeholder='Quantity') }}
+            </div>
+            {% for error in form.quantity.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <button class="btn btn-primary btn-block mb-4">Save</button>
+        </form>
+        </form>
+    </div>
+{% endblock %}

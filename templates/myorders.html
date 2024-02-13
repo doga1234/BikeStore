@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}My Orders{% endblock %}
+{% block body %}
+    <h1>Your Orders</h1>
+    <hr>
+    {% if orders %}
+        <table class="table is-fullwidth table-hover">
+            <tr>
+                <th>Order Id</th>
+                <th>Order Date</th>
+                <th>Ordered Store</th>
+                <th>Ordered Items</th>
+                <th>Order Status</th>
+                <th>Total Price</th>
+            </tr>
+            {% for i in orders %}
+                <tr>
+                    <td>{{ i[0] }}</td>
+                    <td>{{ i[1].order_date }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>
+                        {% for j in i[2] %}
+                            {{ j }},
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if i[1].order_status == 4 %}
+                            shipped
+                        {% else %}
+                            not shipped yet
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ i[1].total_price }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div class="jumbotron">
+            You have no orders record.
+        </div>
+    {% endif %}
+{% endblock %}

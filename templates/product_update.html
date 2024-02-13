@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Product{% endblock %}
+{% block body %}
+<h1>Update Form</h1>
+<form action = "" method = "post">
+    {{ form.csrf_token }}
+    <!-- Product Name -->
+    <div class="form-group">
+        <label for="product_name" class="col-form-label">Product Name:</label>
+        {{ form.product_name(required=True, autofocus=True, class='form-control', placeholder='Product Name') }}
+    </div>
+    {% for error in form.product_name.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    <!-- Brand ID -->
+    <div class="form-group">
+        <label for="brand_id" class="col-form-label">Brand ID:</label>
+        {{ form.brand_id(required=False, autofocus=True, class='form-control', placeholder='Brand ID') }}
+    </div>
+    {% for error in form.brand_id.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    <!-- Category ID -->
+    <div class="form-group">
+        <label for="category_id" class="col-form-label">Category ID:</label>
+        {{ form.category_id(required=True, autofocus=True, class='form-control', placeholder='Category ID') }}
+    </div>
+    {% for error in form.category_id.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    <!-- Model Year -->
+    <div class="form-group">
+        <label for="model_year" class="col-form-label">Model Year:</label>
+        {{ form.model_year(required=True, autofocus=True, class='form-control', placeholder='Model Year') }}
+    </div>
+    {% for error in form.model_year.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    <!-- List Price -->
+    <div class="form-group">
+        <label for="list_price" class="col-form-label">List Price:</label>
+        {{ form.list_price(required=True, autofocus=True, class='form-control', placeholder='List Price') }}
+    </div>
+    {% for error in form.list_price.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    <button class="btn btn-primary btn-block mb-4">Save</button>
+</form>
+
+{% endblock %}

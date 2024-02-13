@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}Orders{% endblock %}
+{% block body %}
+    <h1 class="title">Orders</h1>
+    <hr>
+    <form action="/search_orders" method="post" name="search-store">
+        <div class="field-group form-row">
+            <div class="field col-md-10">
+                <div class="control">
+                    <input type="text" class="form-control" name="keyword" placeholder="Enter ORDER ID to search..." size="60">
+                </div>
+            </div>
+            <div class="field col-md-2">
+                    <div class="control">
+                        <button class="btn btn-dark btn-block">Search</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+    {% if orders %}
+    <form action="" method="post" name="orders_list">
+        {% if current_user.is_admin %}
+            <div class="form-group">
+                <button class="btn btn-danger btn-block">Delete Selected Order Records</button>
+            </div>
+        {% endif %}
+        <table class="table is-striped is-fullwidth">
+          <tr>
+            {% if current_user.is_authenticated %}
+            {% if current_user.is_admin %}
+            <th>Select</th>
+            {% endif %}
+            {% endif %}
+            <th>Order Id</th>
+            <th>Customer Id</th>
+            <th>Order Status</th>
+            <th>Order Date</th>
+            <th>Required Date</th>
+            <th>Shipped Date</th>
+            <th>Store Id</th>
+            <th>Staff Id</th>
+            <th>Total Price</th>
+            <th>Operations</th>
+          </tr>
+        {% for order_key, order in orders %}
+          <tr>
+            {% if current_user.is_authenticated %}
+            {% if current_user.is_admin %}
+            <td>
+                <label class="checkbox">
+                    <input type="checkbox" name="order_keys" value="{{ order_key }}"/>
+                </label>
+            </td>
+            {% endif %}
+            {% endif %}
+            <td>
+              {{ order_key }}
+            </td>
+            <td>
+                {{ order.customer_id }}
+            </td>
+            <td>
+                {{ order.order_status }}
+            </td>
+            <td>
+                {{ order.order_date }}
+            </td>
+            <td>
+                {{ order.required_date }}
+            </td>
+            <td>
+                {{ order.shipped_date }}
+            </td>
+            <td>
+                {{ order.store_id }}
+            </td>
+            <td>
+                {{ order.staff_id }}
+            </td>
+            <td>
+                {{ order.total_price }}
+            </td>
+              <td>
+                  <a class="btn btn-info btn-sm" href="{{ url_for('update_order', order_id=order_key) }}">Update Order</a>
+              </td>
+          </tr>
+        {% endfor %}
+        </table>
+    </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(26, 135, 84)">
+    <a class="navbar-brand" href="/" style = "color: #ffffff">Bike Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('products_page') }}" style = "color: #ffffff">Bikes<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('stores_page')}}" style = "color: #ffffff">Stores<span class="sr-only">(current)</span></a>
+        </li>
+        {% if current_user.is_authenticated and current_user.is_admin %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('categories_page') }}" style = "color: #ffffff">Categories<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('brands_page') }}" style = "color: #ffffff">Brands<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('order_items_page') }}" style = "color: #ffffff">Order Items<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('staffs_page') }}" style = "color: #ffffff">Staffs<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+        {% if current_user.is_staff %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('stocks_page') }}" style = "color: #ffffff">Stocks<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('orders_page') }}" style = "color: #ffffff">Orders<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {% if not current_user.is_authenticated %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('sign_in_customer') }}" style = "color: #ffffff">Sign In <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('sign_up') }}" style = "color: #ffffff">Sign Up <span class="sr-only">(current)</span></a>
+            </li>
+        {% else %}
+            <li class="nav-item my-2">{{ current_user.first_name }} {{ current_user.last_name }}</li>
+            {% if current_user.is_staff %}
+                <li class="nav-item active">
+                    <a href="{{ url_for('staff_page', staff_id=current_user.id) }}" class="nav-link" style = "color: #ffffff">Profile <span class="sr-only">(current)</span></a>
+                </li>
+            {% else %}
+                <li class="nav-item active">
+                    <a href="{{ url_for('customer_profile') }}" class="nav-link" style = "color: #ffffff">Profile <span class="sr-only">(current)</span></a>
+                </li>
+            {% endif %}
+            {% if not current_user.is_staff %}
+            <li class="nav-item active">
+                <a href="{{ url_for('myorders') }}" class="nav-link" style = "color: #ffffff">My Orders <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a href="{{ url_for('mycart') }}" class="nav-link" style = "color: #ffffff">My Cart <span class="sr-only">(current)</span></a>
+            </li>
+          {% endif %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('sign_out') }}" style = "color: #ffffff" >Sign Out <span class="sr-only">(current)</span></a>
+            </li>
+        {% endif %}
+    </ul>
+    </div>
+  </nav>

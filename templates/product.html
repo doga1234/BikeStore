@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}Product{% endblock %}
+{% block body %}
+  <h1 class="title">Product</h1>
+  <table class="table">
+    <tr>
+      <th>Product ID:</th>
+      <td>{{ product.product_id }}</td>
+    </tr>
+    <tr>
+      <th>Product Name:</th>
+      <td>{{ product.product_name }}</td>
+    </tr>
+    <tr>
+      <th>Brand ID:</th>
+      <td>{{ product.brand_id }}</td>
+    </tr>
+    <tr>
+      <th>Category ID:</th>
+      <td>{{ product.category_id }}</td>
+    </tr>
+    <tr>
+      <th>Model Year:</th>
+      <td>{{ product.model_year }}</td>
+    </tr>
+    <tr>
+      <th>List Price:</th>
+      <td>{{ product.list_price }}</td>
+    </tr>
+    <tr>
+      <th>Product Age:</th>
+      <td>{{ product.product_age }}</td>
+    </tr>
+    <tr>
+      <th>Product Warranty</th>
+      <td>
+      {% if product.product_warranty == 0 %}
+        No
+      {% else %}
+        Yes
+      {% endif %}</td>
+    </tr>
+  </table>
+  <hr>
+  <a href="{{ url_for('update_product_page',product_id = product.product_id) }}" class="btn btn-primary btn-md btn-block">Update Product</a>
+{% endblock %}

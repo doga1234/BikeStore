@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Order Item{% endblock %}
+{% block body %}
+  <h1 class="title">Order Item</h1>
+
+  <table class="table">
+    <tr>
+      <th>Order ID:</th>
+      <td>{{ order_item.order_id }}</td>
+    </tr>
+    <tr>
+      <th>Item ID:</th>
+      <td>{{ order_item.item_id }}</td>
+    </tr>
+    <tr>
+      <th>Product ID:</th>
+      <td>{{ order_item.product_id }}</td>
+    </tr>
+    <tr>
+      <th>Quantity:</th>
+      <td>{{ order_item.quantity }}</td>
+    </tr>
+    <tr>
+      <th>List Price:</th>
+      <td>{{ order_item.list_price }}</td>
+    </tr>
+    <tr>
+      <th>Discount:</th>
+      <td>{{ order_item.discount }}</td>
+    </tr>
+    <tr>
+      <th>Net Price:</th>
+      <td>{{ order_item.net_price }}</td>
+    </tr>
+  </table>
+<a href="{{ url_for('update_order_item', order_id=order_item.order_id, item_id=order_item.item_id)}}"><button class="btn btn-primary btn-block">Edit</button></a>
+{% endblock %}

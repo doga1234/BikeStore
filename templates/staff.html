@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Staff{% endblock %}
+{% block body %}
+  <h1 class="title">Staff</h1>
+
+  <table class="table">
+    <tr>
+      <th>Staff ID:</th>
+      <td>{{ staff.id }}</td>
+    </tr>
+    <tr>
+      <th>First Name:</th>
+      <td>{{ staff.first_name }}</td>
+    </tr>
+    <tr>
+        <th>Last Name:</th>
+        <td>{{ staff.last_name }}</td>
+    </tr>
+    <tr>
+        <th>Email:</th>
+        <td>{{ staff.email }}</td>
+    </tr>
+    <tr>
+        <th>Phone:</th>
+        <td>{{ staff.phone }}</td>
+    </tr>
+
+    <tr>
+        <th>Active:</th>
+        <td>{{ staff.active }}</td>
+    </tr>
+    <tr>
+        <th>Store ID:</th>
+        <td>{{ staff.store_id }}</td>
+    </tr>
+    <tr>
+        <th>Manager ID:</th>
+        <td>{{ staff.manager_id }}</td>
+    </tr>
+  </table>
+{% endblock %}

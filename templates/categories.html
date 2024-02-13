@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<h1>Bike Categories</h1>
+<hr>
+<form action="" method="post" name="categories_list">
+<a href="{{ url_for('new_category_page') }}" class="btn btn-success btn-md btn-block">New Category</a>
+</form>
+<table class="table table-hover">
+    <tr>
+        <th>Category Id</th>
+        <th>Category Name</th>
+    </tr>
+    {% for category in categories %}
+        <tr>
+            <td>{{ category[0] }}</td>
+            <td>{{ category[1] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

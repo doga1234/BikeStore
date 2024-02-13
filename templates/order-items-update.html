@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Order Item Form</h1>
+    <hr>
+    <div>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <!-- Order ID -->
+            <div class="form-group">
+                <label for="order_id" class="col-form-label">Order ID:</label>
+                {{ form.order_id(required=False, autofocus=True, class='form-control', placeholder='Order ID') }}
+            </div>
+            {% for error in form.order_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Item ID -->
+            <div class="form-group">
+                <label for="item_id" class="col-form-label">Item ID:</label>
+                {{ form.item_id(required=False, autofocus=True, class='form-control', placeholder='Item ID') }}
+            </div>
+            {% for error in form.item_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Product ID -->
+            <div class="form-group">
+                <label for="product_id" class="col-form-label">Product ID:</label>
+                {{ form.product_id(required=False, autofocus=True, class='form-control', placeholder='Product ID') }}
+            </div>
+            {% for error in form.product_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Quantity-->
+            <div class="form-group">
+                <label for="quantity" class="col-form-label">Quantity:</label>
+                {{ form.quantity(required=True, autofocus=True, class='form-control', placeholder='Quantity') }}
+            </div>
+            {% for error in form.quantity.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- List Price -->
+            <div class="form-group">
+                <label for="list_price" class="col-form-label">List Price:</label>
+                {{ form.list_price(required=True, autofocus=True, class='form-control', placeholder='List Price') }}
+            </div>
+            {% for error in form.list_price.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Discount -->
+            <div class="form-group">
+                <label for="discount" class="col-form-label">Discount:</label>
+                {{ form.discount(required=True, autofocus=True, class='form-control', placeholder='Discount') }}
+            </div>
+            {% for error in form.discount.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Net Price -->
+            <div class="form-group">
+                <label for="net_price" class="col-form-label">Net Price:</label>
+                {{ form.net_price(required=True, autofocus=True, class='form-control', placeholder='Net Price') }}
+            </div>
+            {% for error in form.net_price.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <button class="btn btn-primary btn-block mb-4">Save</button>
+        </form>
+    </div>
+{% endblock %}

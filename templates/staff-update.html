@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Edit Staff</h1>
+    <hr>
+    <div>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <!-- First Name -->
+            <div class="form-group">
+                <label for="first_name" class="col-form-label">First Name:</label>
+                {{ form.first_name(required=True, autofocus=True, class='form-control', placeholder='First Name') }}
+            </div>
+            {% for error in form.first_name.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Last Name -->
+            <div class="form-group">
+                <label for="last_name" class="col-form-label">Last Name:</label>
+                {{ form.last_name(required=True, autofocus=True, class='form-control', placeholder='Last Name') }}
+            </div>
+            {% for error in form.last_name.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Email-->
+            <div class="form-group">
+                <label for="email" class="col-form-label">Email:</label>
+                {{ form.email(required=True, autofocus=True, class='form-control', placeholder='Email') }}
+            </div>
+            {% for error in form.email.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Phone-->
+            <div class="form-group">
+                <label for="phone" class="col-form-label">Phone:</label>
+                {{ form.phone(required=True, autofocus=True, class='form-control', placeholder='Phone') }}
+            </div>
+            {% for error in form.phone.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Active-->
+            <div class="form-group">
+                <label for="active" class="col-form-label">Active:</label>
+                {{ form.active(required=True, autofocus=True, class='form-control', placeholder='Active') }}
+            </div>
+            {% for error in form.active.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Store ID-->
+            <div class="form-group">
+                <label for="store_id" class="col-form-label">Store ID:</label>
+                {{ form.store_id(required=True, autofocus=True, class='form-control', placeholder='Store ID') }}
+            </div>
+            {% for error in form.store_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Manager ID-->
+            <div class="form-group">
+                <label for="manager_id" class="col-form-label">Manager ID:</label>
+                {{ form.manager_id(required=True, autofocus=True, class='form-control', placeholder='Manager ID') }}
+            </div>
+            {% for error in form.manager_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+
+            <button class="btn btn-primary btn-block mb-4">Save</button>
+
+        </form>
+    </div>
+{% endblock %}

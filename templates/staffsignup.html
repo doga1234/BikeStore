@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}Register Staff{% endblock %}
+{% block body %}
+    <h1>Register New Staff</h1>
+    <hr>
+    <div>
+        <form method="post" action="" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <!-- First name -->
+            <div class="form-group">
+                {{ form.first_name.label }}:
+                {{ form.first_name(required=True, autofocus=True, class='form-control', placeholder='First name') }}
+            </div>
+            {% for error in form.first_name.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Last name -->
+            <div class="form-group">
+                {{ form.last_name.label }}:
+                {{ form.last_name(required=True, autofocus=True, class='form-control', placeholder='Last surname') }}
+            </div>
+            {% for error in form.last_name.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Phone -->
+            <div class="form-group">
+                {{ form.phone.label }}:
+                {{ form.phone(required=False, autofocus=True, class='form-control', placeholder='Phone number') }}
+            </div>
+            {% for error in form.phone.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Email -->
+            <div class="form-group">
+                {{ form.email.label }}:
+                {{ form.email(required=True, autofocus=True, class='form-control', placeholder='Email') }}
+            </div>
+            {% for error in form.email.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Active -->
+            <div class="form-group">
+                {{ form.active.label }}:
+                {{ form.active(required=True, class='custom-radio', placeholder='Activity Status') }}
+            </div>
+            {% for error in form.active.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- store ID -->
+            <div class="form-group">
+                {{ form.store_id.label }}:
+                {{ form.store_id(required=True, autofocus=True, class='form-control', placeholder='Store ID') }}
+            </div>
+            {% for error in form.store_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Manager ID -->
+            <div class="form-group">
+                {{ form.manager_id.label }}:
+                {{ form.manager_id(required=True, autofocus=True, class='form-control', placeholder='Manager ID') }}
+            </div>
+            {% for error in form.manager_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Password -->
+            <div class="form-group">
+                {{ form.password.label }}:
+                {{ form.password(required=True, class='form-control', placeholder='Password') }}
+            </div>
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <br>
+            <input type="submit" class="btn btn-primary btn-block mb-4" value="Sign-Up">
+        </form>
+    </div>
+{% endblock %}

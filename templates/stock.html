@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Stock{% endblock %}
+{% block body %}
+  <h1 class="title">Stock</h1>
+
+  <table class="table">
+    <tr>
+      <th>Store ID:</th>
+      <td>{{ stock.store_id }}</td>
+    </tr>
+    <tr>
+        <th>Product ID:</th>
+        <td>{{ stock.product_id }}</td>
+    </tr>
+    <tr>
+        <th>Quantity:</th>
+        <td>{{ stock.quantity }}</td>
+    </tr>
+
+  </table>
+<a href="{{ url_for('update_stock', store_id=stock.store_id, product_id=stock.product_id)}}"><button class="btn btn-primary btn-block">Edit</button></a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Brand{% endblock %}
+{% block body %}
+  <h1 class="title">Brand</h1>
+
+  <table class="table">
+    <tr>
+      <th>Brand ID:</th>
+      <td>{{ brand.brand_id }}</td>
+    </tr>
+    <tr>
+      <th>Brand Name:</th>
+      <td>{{ brand.brand_name }}</td>
+    </tr>
+  </table>
+  <a href="{{ url_for('update_brand', brand_id=brand.brand_id)}}"><button class="btn btn-primary btn-block">Edit</button></a>
+{% endblock %}

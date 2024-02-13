@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+<h1 class="title">Products List</h1>
+  <hr>
+  <form action="/search_products" method="post" name="search-product">
+    <div class="field-group form-row">
+        <div class="field col-md-10">
+            <div class="control">
+                <input type="text" class="form-control" name="keyword" placeholder="Enter PRODUCT NAME or PRODUCT ID to search..." size="100">
+            </div>
+        </div>
+    <div class="field col-md-2">
+            <div class="control">
+                <button class="btn btn-dark btn-md btn-block">Search</button>
+            </div>
+        </div>
+    </div>
+  </form>
+  {% if current_user.is_admin %}
+  <form action="" method="post" name="products_list">
+  <a href="{{ url_for('new_product_page') }}" class="btn btn-success btn-md btn-block">New Product</a>
+  <button class="btn btn-danger btn-md btn-block">Delete Selected Products</button>
+  {% endif %}
+    {% if products %}
+        <table class="table table-hover">
+          <tr>
+            {% if current_user.is_authenticated %}
+              {% if current_user.is_admin %}
+                <th>Select</th>
+              {% endif %}
+            {% endif %}
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Brand Id</th>
+            <th>Category Id</th>
+            <th>Model Year</th>
+            <th>List Price</th>
+            <th>Product Age</th>
+            <th>Product Warranty</th>
+            {% if current_user.is_admin %}
+            <th>Update</th>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+              {% if not current_user.is_staff %}
+                <th>Cart</th>
+              {% endif %}
+            {% endif %}
+          </tr>
+        {% for product_id, product in products %}
+          <tr>
+            {% if current_user.is_authenticated %}
+            {% if current_user.is_admin %}
+            <td>
+              <label class="checkbox">
+                  <input type="checkbox" name="product_keys" value="{{ product_id }}"/>
+              </label>
+          </td>
+          {% endif %}
+          {% endif %}
+            <td>
+              {{ product.product_id}}
+            </td>
+            <td>
+              {{ product.product_name }}
+            </td>
+            <td>
+              {{ product.brand_id}}
+            </td>
+            <td>
+              {{ product.category_id}}
+            </td>
+            <td>
+              {{ product.model_year}}
+            </td>
+            <td>
+              {{ product.list_price}}
+            </td>
+            <td>
+                {{product.product_age}}
+            </td>
+            <td>
+              {% if product.product_warranty == 0 %}
+                No
+              {% else %}
+                Yes
+              {% endif %}
+            </td>
+            {% if current_user.is_authenticated %}
+              {% if current_user.is_admin %}
+              <td>
+                <a class="btn btn-info btn-sm" href="{{ url_for('update_product_page', product_id=product_id)}}">Update Product</a>
+              </td>
+              {% else %}
+                {% if not current_user.is_staff %}
+                  <td>
+                  <a href="{{ url_for('add_to_cart', product_id=product_id) }}" class="btn btn-info btn-sm">Add to Cart</a>
+                  </td>
+                {% endif %}
+                {% endif %}
+            {% endif %}
+          </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+  </form>
+{% endblock %}

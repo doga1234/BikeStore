@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Customer Profile{% endblock %}
+{% block body %}
+    <script>
+        function deleteProfile() {
+            let result = confirm("Are you sure?");
+            if (result) {
+                document.getElementById("deletelink").setAttribute("href", "/deleteuser")
+                console.log("deleted");
+            }
+        }
+    </script>
+    <h1>Your Profile</h1>
+    <hr>
+    <div class="card card-body">
+    <figure class="mb-4"><img class="img-fluid rounded" src="{{ current_user.image }}" alt="..." width="20%"/></figure>
+        <table class="table is-fullwidth table-hover">
+            <tr>
+                <th>First Name</th>
+                <td>{{ current_user.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ current_user.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>
+                    {% if current_user.phone == "nan" %}
+                        not specified
+                    {% else %}
+                        {{ current_user.phone }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ current_user.email }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ current_user.street }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ current_user.city }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ current_user.state }}</td>
+            </tr>
+            <tr>
+                <th>Zip Code</th>
+                <td>{{ current_user.zip_code }}</td>
+            </tr>
+            <tr>
+                <td><a href="{{ url_for('update_customer') }}"><button class="btn btn-primary btn-block">Update Information</button></a></td>
+                <td><a id="deletelink" href=""><button class="btn btn-danger btn-block" onclick="deleteProfile();">Delete User</button></a></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

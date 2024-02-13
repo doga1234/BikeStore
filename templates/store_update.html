@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Store{% endblock %}
+{% block body %}
+<h1>Update Form</h1>
+<form action = "" method = "post">
+    {{ form.csrf_token }}
+    <!-- Store Name -->
+    <div class="form-group">
+        <label for="store_name" class="col-form-label">Store Name:</label>
+        {{ form.store_name(required=True, autofocus=True, class='form-control', placeholder='Store Name') }}
+    </div>
+    {% for error in form.store_name.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    
+    <!-- Phone -->
+    <div class="form-group">
+        <label for="phone" class="col-form-label">Phone:</label>
+        {{ form.phone(required=True, autofocus=True, class='form-control', placeholder='Phone') }}
+    </div>
+    {% for error in form.phone.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email" class="col-form-label">Email:</label>
+        {{ form.email(required=True, autofocus=True, class='form-control', placeholder='Email') }}
+    </div>
+    {% for error in form.email.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+
+    <!-- Street -->
+    <div class="form-group">
+        <label for="street" class="col-form-label">Street:</label>
+        {{ form.street(required=True, autofocus=True, class='form-control', placeholder='Street') }}
+    </div>
+    {% for error in form.street.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+
+    <!-- City -->
+    <div class="form-group">
+        <label for="city" class="col-form-label">City:</label>
+        {{ form.city(required=True, autofocus=True, class='form-control', placeholder='City') }}
+    </div>
+    {% for error in form.city.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+
+    <!-- State Name -->
+    <div class="form-group">
+        <label for="state" class="col-form-label">State:</label>
+        {{ form.state(required=True, autofocus=True, class='form-control', placeholder='State') }}
+    </div>
+    {% for error in form.state.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+
+    <!-- Zip Code -->
+    <div class="form-group">
+        <label for="zip_code" class="col-form-label">Zip Code:</label>
+        {{ form.zip_code(required=True, autofocus=True, class='form-control', placeholder='Zip Code') }}
+    </div>
+    {% for error in form.zip_code.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+
+    <button class="btn btn-primary btn-block mb-4">Save</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}Stores{% endblock %}
+
+{% block body %}
+<h1 class="title">Stores</h1>
+<hr>
+<form action="/search_stores" method="post" name="search-store">
+    <div class="field-group form-row">
+        <div class="field col-md-10">
+            <div class="control">
+                <input type="text" class="form-control" name="keyword" placeholder="" size="100">
+            </div>
+        </div>
+    <div class="field col-md-2">
+            <div class="control">
+                <button class="btn btn-dark btn-md btn-block">Search</button>
+            </div>
+        </div>
+    </div>
+  </form>
+  {% if current_user.is_admin %}
+  <form action="" method="post" name="stores_list">
+  <a href="{{ url_for('new_store_page') }}" class="btn btn-success btn-md btn-block">New Store</a>
+  <button class="btn btn-danger btn-md btn-block">Delete Selected Stores</button>
+  {% endif %}
+  {% if stores %}
+  <table class="table table-hover">
+    <tr>
+        {% if current_user.is_authenticated %}
+        {% if current_user.is_admin %}
+        <th>Select</th>
+        {% endif %}
+        {% endif %}
+        <th>Store Id</th>
+        <th>Store Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip Code</th>
+        {% if current_user.is_admin %}
+            <th>Update</th>
+        {% endif %}
+    </tr>
+    {% for store_id, store in stores %}
+        <tr>            
+            {% if current_user.is_authenticated %}
+            {% if current_user.is_admin %}
+            <td>
+                <label class="checkbox">
+                    <input type="checkbox" name="store_keys" value="{{ store_id }}"/>
+                </label>
+            </td>
+            {% endif %}
+            {% endif %}
+            <td>
+                {{ store.store_id}}
+            </td>
+            <td>
+                {{ store.store_name}}
+            </td>
+            <td>
+                {{ store.phone}}
+            </td>
+            <td>
+                {{ store.email}}
+            </td>
+            <td>
+                {{ store.street}}
+            </td>
+            <td>
+                {{ store.city}}
+            </td>
+            <td>
+                {{ store.state}}
+            </td>
+            <td>
+                {{ store.zip_code}}
+            </td>
+            {% if current_user.is_admin %}
+            <td>
+              <a class="btn btn-info btn-sm" href="{{ url_for('update_store_page', store_id=store_id)}}">Update Store</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<form>
+{% endblock %}

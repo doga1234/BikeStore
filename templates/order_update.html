@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Order Update{% endblock %}
+{% block body %}
+    <h1>Edit Order Record</h1>
+    <hr>
+    <div>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <!-- Order Status -->
+            <div class="form-group">
+                {{ form.order_status.label }}:
+                {{ form.order_status(required=True, autofocus=True, class='form-control', placeholder='Order Status') }}
+            </div>
+            {% for error in form.order_status.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Shipped Date -->
+            <div class="form-group">
+                {{ form.shipped_date.label }}
+                {{ form.shipped_date(required=True, autofocus=True, class='form-control', placeholder='Shipped Date') }}
+            </div>
+            {% for error in form.shipped_date.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <!-- Staff ID -->
+            <div class="form-group">
+                {{ form.staff_id.label }}
+                {{ form.staff_id(required=True, autofocus=True, class='form-control', placeholder='Staff Id') }}
+            </div>
+            {% for error in form.staff_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+
+            <button class="btn btn-primary btn-block mb-4">Save</button>
+
+        </form>
+    </div>
+{% endblock %}

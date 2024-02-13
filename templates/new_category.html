@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}New Category{% endblock %}
+
+{% block body %}
+<h1>Category Form</h1>
+<div>
+    <form action = "" method="post">
+        {{form.csrf_token}}
+        <!-- Category Name-->
+        <div class = "form-group">
+            <label for = "category_name" class = "col-form-label">Category Name:</label>
+            {{form.category_name(required = True, autofocus = True, class = 'form-control', placeholder = 'Product Name') }}
+        </div>
+        {% for error in form.category_name.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+        <button class="btn btn-primary btn-block mb-4">Save</button>
+    </form>
+</div>
+{% endblock %}

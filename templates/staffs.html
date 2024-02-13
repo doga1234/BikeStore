@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block title %}Staffs list{% endblock %}
+{% block body %}
+    <h1 class="title">Staffs List</h1>
+    <hr>
+    <form action="/search_staffs" method="post" name="search-staff">
+        <div class="field-group form-row">
+            <div class="field col-md-10">
+                <div class="control">
+                    <input type="text" class="form-control" name="keyword" placeholder="Enter STAFF NAME or STAFF ID to search..." size="100">
+                </div>
+            </div>
+        <div class="field col-md-2">
+                <div class="control">
+                    <button class="btn btn-dark btn-block">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% if staffs %}
+    <form action="" method="post" name="staffs_list">
+        <div class="field-group">
+            <div class="control">
+              <a href="{{ url_for('signup_staff_page') }}" class="btn btn-success btn-block">New Staff Member</a>
+                <button class="btn btn-danger btn-block">Delete Selected Staffs</button>
+
+            </div>
+        </div>
+        <table class="table is-striped is-fullwidth">
+          <tr>
+            <th>Select</th>
+            <th>Staff Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Active</th>
+            <th>Store ID</th>
+            <th>Manager ID</th>           
+            <th>Operations</th>
+          </tr>
+        {% for staff_id, staff in staffs %}
+          <tr>
+            <td>
+                <label class="checkbox">
+                    <input type="checkbox" name="staff_keys" value="{{ staff_id }}"/>
+                </label>
+            </td>
+            <td>
+              {{ staff_id}}
+            </td>
+            <td>
+              {{ staff.first_name}}
+            </td>
+            <td>
+              {{ staff.last_name}}
+            </td>
+            <td>
+              {{ staff.email}}
+            </td>
+            <td>
+              {{ staff.phone}}
+            </td>
+            <td>
+              {{ staff.active}}
+            </td>
+            <td>
+              {{ staff.store_id}}
+            </td>
+            <td>
+              {{ staff.manager_id}}
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" href="{{ url_for('update_staff', staff_id=staff_id)}}">Update Staff</a>
+            </td>
+          </tr>
+        {% endfor %}
+        </table>
+    </form>
+    {% endif %}
+{% endblock %}

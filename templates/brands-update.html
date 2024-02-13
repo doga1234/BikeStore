@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Brand Form</h1>
+    <hr>
+    <div>
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            <!-- Brand Name -->
+            <div class="form-group">
+                <label for="brand_name" class="col-form-label">Brand Name:</label>
+                {{ form.brand_name(required=True, autofocus=True, class='form-control', placeholder='Brand Name') }}
+            </div>
+            {% for error in form.brand_name.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            <button class="btn btn-primary btn-block mb-4">Save</button>
+        </form>
+        </form>
+    </div>
+{% endblock %}

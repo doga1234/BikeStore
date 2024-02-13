@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}Ordered Items List{% endblock %}
+
+{% block body %}
+<h1 class="title">Ordered Items List</h1>
+<hr>
+<form action="/search_order_items" method="post" name="search-order-item">
+  <div class="field-group form-row">
+      <div class="field col-md-10">
+          <div class="control">
+              <input type="text" class="form-control" name="keyword" placeholder="Enter ORDER ID to search..." size="60">
+          </div>
+      </div>
+  <div class="field col-md-2">
+          <div class="control">
+              <button class="btn btn-dark btn-md btn-block">Search</button>
+          </div>
+      </div>
+  </div>
+</form>
+    {% if order_items %}
+    <form action="" method="post" name="order_items_list">
+        <div class="form-group">
+          <a href="{{ url_for('add_order_item_page') }}" class="btn btn-success btn-md btn-block">New Order Item</a>
+            <button class="btn btn-danger btn-md btn-block">Delete Selected Order Items</button>
+        </div>
+        <table class="table table-hover">
+          <tr>
+            <th>Select</th>
+            <th>Order Id</th>
+            <th>Item Id</th>
+            <th>Product Id</th>
+            <th>Quantity</th>
+            <th>List Price</th>
+            <th>Discount</th>
+            <th>Net Price</th>
+            <th>Operations</th>
+          </tr>
+        {% for order_item_id, order_item in order_items %}
+          <tr>
+            <td>
+              <label class="checkbox">
+                  <input type="checkbox" name="order_item_keys" value="{{order_item.order_id}},{{order_item.item_id}}"/>
+              </label>
+            </td>
+            <td>
+              {{ order_item.order_id}}
+            </td>
+            <td>
+              {{ order_item.item_id }}
+            </td>
+            <td>
+              {{ order_item.product_id}}
+            </td>
+            <td>
+              {{ order_item.quantity}}
+            </td>
+            <td>
+              {{ order_item.list_price}}
+            </td>
+            <td>
+              {{ order_item.discount}}
+            </td>
+            <td>
+              {{ order_item.net_price}}
+            </td>
+            <td>
+              <a class="btn btn-info btn-sm" href="{{ url_for('bupdate_order_item', order_item_id = order_item_id)}}">Update Order Item</a>
+            </td>
+          </tr>
+        {% endfor %}
+        </table>
+    </form>
+    {% endif %}
+{% endblock %}

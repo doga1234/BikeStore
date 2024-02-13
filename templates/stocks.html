@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block title %}Stocks list{% endblock %}
+{% block body %}
+    <h1 class="title">Stocks List</h1>
+    <hr>
+    <form action="/search_stocks" method="post" name="search-stock">
+        <div class="field-group form-row">
+            <div class="field col-md-10">
+                <div class="control">
+                    <input type="text" class="form-control" name="keyword" placeholder="Enter Store ID to search..." size="60">
+                </div>
+            </div>
+        <div class="field col-md-2">
+                <div class="control">
+                    <button class="btn btn-dark btn-block">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% if stocks %}
+    <form action="" method="post" name="stocks_list">
+        <div class="form-group">
+            <a href="{{ url_for('add_stock_page') }}" class="btn btn-success btn-block">New Stock Record</a>
+            <button class="btn btn-danger btn-block">Delete Selected Stock Records</button>
+        </div>
+        <table class="table is-striped is-fullwidth">
+          <tr>
+            <th>Select</th>
+            <th>Store Id</th>
+            <th>Product Id</th>
+            <th>Quantity</th>
+            <th>Operations</th>
+          </tr>
+        {% for stock_id, product_id, stock in stocks %}
+          <tr>
+            <td>
+                <label class="checkbox">
+                    <input type="checkbox" name="stock_keys" value="{{stock.store_id}},{{stock.product_id}}"/>
+                </label>
+            </td>
+            <td>
+              {{ stock.store_id }}
+            </td>
+            <td>
+              {{ stock.product_id }}
+            </td>
+            <td>
+              {{ stock.quantity }}
+            </td>
+              <td>
+                  <a class="btn btn-info btn-sm" href="{{ url_for('update_stock', store_id=stock.store_id, product_id=stock.product_id)}}">Update Stock</a>
+              </td>
+          </tr>
+        {% endfor %}
+        </table>
+    </form>
+    {% endif %}
+{% endblock %}
